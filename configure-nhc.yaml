@@ -6,12 +6,12 @@
   vars_files:
     - vars.yaml
   tasks:
-    - name: "Create Namespace {{ node-health-check-namespace }}"
+    - name: "Create Namespace {{ node_health_check_namespace }}"
       kubernetes.core.k8s:
         state: present
         template: node-health-check-namespace.yml.j2
 
-    - name: "Create OperatorGroup {{ workload-availability-operator-group }}"
+    - name: "Create OperatorGroup {{ workload_availability_operator_group }}"
       kubernetes.core.k8s:
         state: present
         template: workload-availability-operator-group.yml.j2
