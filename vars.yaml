@@ -1,0 +1,3 @@
+---
+node-health-check-namespace: "openshift-workload-availability"
+workload-availability-operator-group: "workload-availability-operator-group"

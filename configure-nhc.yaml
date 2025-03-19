@@ -1,0 +1,22 @@
+---
+- name: "Configure NHC for OCP Virtualization"
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: "Create Namespace {{ node-health-check-namespace }}"
+      kubernetes.core.k8s:
+        state: present
+        template: node-health-check-namespace.yml.j2
+
+    - name: "Create OperatorGroup {{ workload-availability-operator-group }}"
+      kubernetes.core.k8s:
+        state: present
+        template: workload-availability-operator-group.yml.j2
+
+    - name: "Create Subscription node-health-check-operator"
+      kubernetes.core.k8s:
+        state: present
+        template: node-health-check-subscription.yml.j2
