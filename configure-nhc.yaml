@@ -20,3 +20,14 @@
       kubernetes.core.k8s:
         state: present
         template: node-health-check-subscription.yml.j2
+
+          #    - name: "Create OperatorGroup self-node-remediation-operator"
+          #      kubernetes.core.k8s:
+          #        state: present
+          #        template: snr-og.yml.j2
+          #
+    - name: "Create Subscription self-node-remediation-operator"
+      kubernetes.core.k8s:
+        state: present
+        template: snr-subscription.yml.j2
+

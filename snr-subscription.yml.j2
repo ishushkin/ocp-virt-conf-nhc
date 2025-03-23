@@ -1,0 +1,11 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+    name: self-node-remediation
+    namespace: {{ node_health_check_namespace }}
+spec:
+    channel: stable
+    name: self-node-remediation
+    source: redhat-operators
+    sourceNamespace: openshift-marketplace
+    package: self-node-remediation
