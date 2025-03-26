@@ -31,3 +31,8 @@
         state: present
         template: snr-subscription.yml.j2
 
+    - name: "Create NHC template"
+      kubernetes.core.k8s:
+        state: present
+        template: nhc-template.yml.j2
+
