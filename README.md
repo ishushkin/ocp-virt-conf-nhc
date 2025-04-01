@@ -23,25 +23,19 @@ This Operator can be used in any environment (physical or virtual nodes).
 ├── Readme.md # Readme file
 ├── snr-subscription.yml.j2 # Subscription for Self Node Remediation Operator
 ├── vars.yaml # File with variables
-└── workload-availability-operator-group.yml.j2 # 
+└── workload-availability-operator-group.yml.j2 # Operator Group for NHC and SNR Operators
 ```
 
 ---
 
-## 🎯 Purpose of Helm Chart
+## 🚀 How to Apply
 
-The `helm-console-notification` chart manages the deployment of OpenShift `ConsoleNotification` resources that display banner messages in the web console. These notifications help communicate environment-specific or system-critical information to platform users.
-
----
-
-## 🚀 How to Apply Manually
-
-You can render and apply the Helm chart manually using the following steps:
+You can configure NHC using Ansible or manually
 
 ```bash
 # Clone the repository
-git clone https://github.com/digital-iq/gitops-demo-console-notification
-cd gitops-demo-console-notification
+git clone https://github.com/ishushkin/ocp-virt-conf-nhc
+cd ocp-virt-conf-nhc
 
 # Lint
 helm lint helm-*/
@@ -104,16 +98,14 @@ These values can be overridden via the appropriate `values-nonprod.yaml` or `val
 
 ## 🛠️ TODO
 
-None
+Add Fence Agents Remediation (FAR)
 
 ---
 
 ## 📦 Prerequisites
 
 - OpenShift 4.x with access to the OpenShift Console
-- ArgoCD with ApplicationSet controller installed
-- GitHub Actions configured with access to the GitOps cluster
-- Helm 3.0+ installed locally for manual rendering
+- Ansible 2.19
 
 ---
 
