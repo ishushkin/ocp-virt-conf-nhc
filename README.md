@@ -45,47 +45,44 @@ ansible-playbook configure-nhc.yaml
 ```
 ---
 
-## 👀 How to See the Result
+## 👀 How to Verify Installation
 
-1. Log in to the OpenShift web console.
-2. You should see a colored banner at the top or bottom (depending on your Helm values).
-3. Use `oc get consolnotifications` to validate the CR has been applied:
+1. Log in to the OpenShift with oc login command
+2. Verify that the installation succeeded by inspecting the CSV resource:
    ```bash
-   oc get consolnotifications
+   oc get csv -n openshift-workload-availability
+   ```
+3. Verify that the Node Health Check Operator is up and running:
+   ```bash
+   oc get deployment -n openshift-workload-availability
    ```
 
 ---
 
-## 🔄 GitHub Workflow Integration
+## 👀 How to verify operation
 
-The `.github/workflows/push-cd.yaml` pipeline automates the rendering and application of Helm charts in the GitOps cluster. It can also optionally handle the creation of secrets required by the chart.
-
-Key Features:
-- Reusable pipeline integration
-- Cluster targeting via environment
-- GitOps ApplicationSet updates
+⚠️**Attention: This step can disrupt running applications and/or make them unavailable, use with caution.**  
+In order to verify correct operation of the Operator, you need to make one of the worker nodes not reachable for others.
+For example, it can be achieved by disabling network interface on the node.
 
 ---
 
-## Helm Chart Variables
+## Ansible Variables
 
-The following table outlines the configurable parameters used in the `ConsoleNotification` Helm chart and their default values:
+The following table outlines the configurable variables used in the Playbook variables file vars.yml:
 
 | Variable         | Description                                 | Default Value       |
 |------------------|---------------------------------------------|---------------------|
-| `backgroundColor`| Background color of the banner              | `"#000000"`         |
-| `color`          | Text color of the banner                    | `"#FFFFFF"`         |
-| `text`           | The message text shown in the banner        | `"Environment Notice"` |
+| `node_health_check_namespace`  | Namespace where to install Operators              | `openshift-workload-availability`         |
+| `workload_availability_operator_group`          | Operator Group name                    | `workload-availability-operator-group`         |
 
-These values can be overridden via the appropriate `values-nonprod.yaml` or `values-prod.yaml` file.
+These values can be changed by editing `vars.yml` file.
 
 ---
 
 ## ⚠️ Limitations
 
-- Assumes ArgoCD and ApplicationSet controller are already deployed in the GitOps cluster.
-- Only supports OpenShift environments with access to the GitOps instance.
-- No native rollback or diff detection — relies on ArgoCD for state sync.
+None.
 
 ---
 
@@ -99,31 +96,6 @@ Add Fence Agents Remediation (FAR)
 
 - OpenShift 4.x with access to the OpenShift Console
 - Ansible 2.19
-
----
-
-## 🧪 Testing Locally
-
-You can validate the rendered manifest before applying:
-
-```bash
-# Clone the repository
-git clone https://github.com/digital-iq/gitops-demo-console-notification/
-cd gitops-demo-console-notification
-
-# Lint
-helm lint helm-*/
-
-# Extract values from applicationset/values.yaml to local file values.yaml for particular cluster
-
-# Render
-helm template helm-console-notification \
-  -f values.yaml \
-  > rendered.yaml
-
-# Apply to cluster
-oc apply -f rendered.yaml
-```
 
 ---
 
