@@ -2,30 +2,27 @@
 
 ## 📖 Description
 
-This repository provides guidance for deploying `Node Health Check` operator on an OpenShift cluster.  
 OpenShift nodes may become unhealthy at any given time, the reasons leading to a node failure may vary.  
 When a node fails, the workloads running on affected node must be rescheduled.  
 These workloads might require at-most-one semantics which means no split-brain scenatio is allowed in the cluster.  
-
+  
+This repository provides an ansible playbook for deploying `Node Health Check` operator with `Self Node Remediation Operator` on an OpenShift cluster.  
+Self Node Remediation Operator is recommended for nodes that do not have a management interface (like iLO or iDRAC), or the interface might be unreachable, since SNR does not require one to work.  
+This Operator can be used in any environment (physical or virtual nodes).  
 ---
 
 ## 📁 Repo Structure
 
 ```
 .
-├── applicationset/
-│   ├── values.yaml       # Helm values for Openshift clusters under Argocd
-│
-├── helm-console-notification/
-│   ├── Chart.yaml                # Helm Chart metadata
-│   └── templates/
-│       └── ConsoleNotification.yaml  # ConsoleNotification CR manifest
-│
-├── .github/
-│   └── workflows/
-│       └── push-cd.yaml          # GitHub Action for CD pipeline
-│
-└── README.md                     # Documentation and usage guide
+├── configure-nhc.yaml # Ansible playbook to apply the manifests
+├── nhc-template.yml.j2 # NodeHealthCheck CR definition
+├── node-health-check-namespace.yml.j2 # Namespace for Node Health Check Operator
+├── node-health-check-subscription.yml.j2 # Subscription for Node Health Check Operator
+├── Readme.md # Readme file
+├── snr-subscription.yml.j2 # Subscription for Self Node Remediation Operator
+├── vars.yaml # File with variables
+└── workload-availability-operator-group.yml.j2 # 
 ```
 
 ---
