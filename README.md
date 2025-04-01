@@ -9,6 +9,7 @@ These workloads might require at-most-one semantics which means no split-brain s
 This repository provides an ansible playbook for deploying `Node Health Check` operator with `Self Node Remediation Operator` on an OpenShift cluster.  
 Self Node Remediation Operator is recommended for nodes that do not have a management interface (like iLO or iDRAC), or the interface might be unreachable, since SNR does not require one to work.  
 This Operator can be used in any environment (physical or virtual nodes).  
+
 ---
 
 ## 📁 Repo Structure
