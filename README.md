@@ -6,9 +6,9 @@ OpenShift nodes may become unhealthy at any given time, the reasons leading to a
 When a node fails, the workloads running on affected node must be rescheduled.  
 These workloads might require at-most-one semantics which means no split-brain scenatio is allowed in the cluster.  
   
-This repository provides an ansible playbook for deploying `Node Health Check` operator with `Self Node Remediation Operator` on an OpenShift cluster.  
-Self Node Remediation Operator is recommended for nodes that do not have a management interface (like iLO or iDRAC), or the interface might be unreachable, since SNR does not require one to work.  
-This Operator can be used in any environment (physical or virtual nodes).  
+This repository provides an ansible playbook and OpenShift manifests for deploying `Node Health Check` Operator with `Self Node Remediation` Operator on an OpenShift cluster.  
+`Self Node Remediation` Operator is recommended for nodes that do not have a management interface (like iLO or iDRAC), or the interface might be unreachable, since SNR does not require one to work.  
+SNR Operator can be used in any environment (physical or virtual nodes).  
 
 ---
 
@@ -30,25 +30,18 @@ This Operator can be used in any environment (physical or virtual nodes).
 
 ## 🚀 How to Apply
 
-You can configure NHC using Ansible or manually
+You can install and configure NHC using Ansible
 
 ```bash
+# Login to the cluster
+oc login --token=sha256~XXXXXXXXXXXXXXXXXXX --server=https://api.xxx.yyy.zzz.com:6443
+
 # Clone the repository
 git clone https://github.com/ishushkin/ocp-virt-conf-nhc
 cd ocp-virt-conf-nhc
 
-# Lint
-helm lint helm-*/
-
-# Clone applicationset git repo
-git clone https://github.com/digital-iq/gitops-demo-applicationset-templates
-cd gitops-demo-applicationset-templates
-
-# Render
-helm template main-applicationset ./main-applicationset -f ../applicationset/values.yaml > rendered.yaml
-
-# Apply to cluster
-oc apply -f rendered.yaml
+# Apply to cluster using Ansible
+ansible-playbook configure-nhc.yaml
 ```
 ---
 
