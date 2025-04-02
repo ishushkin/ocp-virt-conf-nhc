@@ -95,7 +95,7 @@ Add Fence Agents Remediation (FAR)
 ## 📦 Prerequisites
 
 - OpenShift 4.x with access to the OpenShift Console
-- Ansible 2.19
+- Ansible
 
 ---
 
@@ -114,4 +114,4 @@ This repository is licensed under the [MIT License](LICENSE), unless otherwise n
 ## 👥 Maintainers
 
 - Platform Team, Li9 DevOps Group
-- Contacts: alexandr.vishniakov@li9.com, oleg.klimin@li9.com, artemii.kropachev@li9.com
+- Contacts: igor.shushkin@li9.com
