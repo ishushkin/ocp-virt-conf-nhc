@@ -6,7 +6,7 @@ OpenShift nodes may become unhealthy at any given time, the reasons leading to a
 When a node fails, the workloads running on affected node must be rescheduled.  
 These workloads might require at-most-one semantics which means no split-brain scenatio is allowed in the cluster.  
   
-This repository provides an ansible playbook and OpenShift manifests for deploying `Node Health Check` Operator with `Self Node Remediation` Operator on an OpenShift cluster.  
+This repository provides an Ansible playbook and OpenShift manifests for deploying `Node Health Check` Operator with `Self Node Remediation` Operator on an OpenShift cluster.  
 `Self Node Remediation` Operator is recommended for nodes that do not have a management interface (like iLO or iDRAC), or the interface might be unreachable, since SNR does not require one to work.  
 SNR Operator can be used in any environment (physical or virtual nodes).  
 
@@ -62,14 +62,14 @@ ansible-playbook configure-nhc.yaml
 ## 👀 How to verify operation
 
 ⚠️**Attention: This step can disrupt running applications and/or make them unavailable, use with caution.**  
-In order to verify correct operation of the Operator, you need to make one of the worker nodes not reachable for others.
-For example, it can be achieved by disabling network interface on the node.
+In order to verify correct operation of the Operator, you need to make one of the worker nodes not reachable for other nodes in the cluster.
+For example, it can be achieved by disabling network interface on a node.
 
 ---
 
 ## Ansible Variables
 
-The following table outlines the configurable variables used in the Playbook variables file vars.yml:
+The following table outlines the configurable variables used in the playbook's variables file "vars.yml":
 
 | Variable         | Description                                 | Default Value       |
 |------------------|---------------------------------------------|---------------------|
@@ -88,7 +88,7 @@ None.
 
 ## 🛠️ TODO
 
-Add Fence Agents Remediation (FAR)
+Add Option to use Fence Agents Remediation (FAR) Operator
 
 ---
 
