@@ -1,3 +1,4 @@
 ---
 node_health_check_namespace: "openshift-workload-availability"
 workload_availability_operator_group: "workload-availability-operator-group"
+condition_duration: "300s"

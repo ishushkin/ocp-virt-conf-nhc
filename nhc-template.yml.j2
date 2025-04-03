@@ -16,7 +16,7 @@ spec:
   unhealthyConditions: 
     - type: Ready
       status: "False"
-      duration: 300s 
+      duration: {{ condition_duration }}
     - type: Ready
       status: Unknown
-      duration: 300s 
+      duration: {{ condition_duration }}
