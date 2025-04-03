@@ -30,4 +30,3 @@
       kubernetes.core.k8s:
         state: present
         template: nhc-template.yml.j2
-
