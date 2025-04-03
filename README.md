@@ -64,6 +64,7 @@ ansible-playbook configure-nhc.yaml
 ⚠️**Attention: This step can disrupt running applications and/or make them unavailable, use with caution.**  
 In order to verify correct operation of the Operator, you need to make one of the worker nodes not reachable for other nodes in the cluster.
 For example, it can be achieved by disabling network interface on a node.
+After the timeout defined in the vars file (condition_duration var) the NHC operator will perform remediation and workloads from the faulty node should be rescheduled on the surviving nodes.
 
 ---
 
