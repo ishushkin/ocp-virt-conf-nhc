@@ -7,7 +7,7 @@ spec:
   remediationTemplate:
     apiVersion: self-node-remediation.medik8s.io/v1alpha1
     kind: SelfNodeRemediationTemplate
-    namespace: {{ openshift-workload-availability }}
+    namespace: {{ node_health_check_namespace }}
     name: self-node-remediation-automatic-strategy-template
   selector: 
     matchExpressions:
