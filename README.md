@@ -76,6 +76,7 @@ The following table outlines the configurable variables used in the playbook's v
 |------------------|---------------------------------------------|---------------------|
 | `node_health_check_namespace`  | Namespace where to install Operators              | `openshift-workload-availability`         |
 | `workload_availability_operator_group`          | Operator Group name                    | `workload-availability-operator-group`         |
+| `condition_duration`          | Duration of unhealthy node state before taking action                    | `300s`         |
 
 These values can be changed by editing `vars.yml` file.
 
